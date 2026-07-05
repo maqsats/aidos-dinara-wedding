@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Айдос &amp; Динара — Үйлену тойы</title>
+<meta name="description" content="Айдос пен Динараның үйлену тойына арналған шақыру. 8 тамыз 2026 жыл, Сарыағаш қаласы." />
+<meta name="theme-color" content="#fbf8f1" />
+
+<!-- Social share preview -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Айдос &amp; Динара — Үйлену тойы" />
+<meta property="og:description" content="Сіздерді үйлену тойымыздың қадірлі қонағы болуға шақырамыз. 8 тамыз 2026 жыл · Сарыағаш." />
+
+<!-- Emoji favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+
+<!-- Fonts (Cyrillic + Latin) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   AIDOS & DINARA — Wedding invitation
+   Futuristic-minimalist Kazakh design
+   Single self-contained file. Deploy anywhere (GitHub Pages, etc.)
+   ============================================================ */
+
+:root{
+  --bg-0:#fbf8f1;
+  --bg-1:#f5efe3;
+  --bg-2:#eee6d5;
+
+  --gold-1:#c9a355;
+  --gold-2:#ab8036;
+  --gold-3:#82601f;
+  --gold-line:rgba(171,128,54,.5);
+
+  --ivory:#3a352e;
+  --muted:#847c6c;
+  --muted-2:#a89f8d;
+
+  --panel:rgba(255,255,255,.55);
+  --panel-brd:rgba(171,128,54,.2);
+  --panel-brd-hi:rgba(171,128,54,.42);
+
+  --font-serif:"Cormorant Garamond", Georgia, serif;
+  --font-sans:"Manrope", system-ui, -apple-system, sans-serif;
+
+  --maxw:940px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-sans);
+  background:var(--bg-0);
+  color:var(--ivory);
+  line-height:1.65;
+  overflow-x:hidden;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+body.locked{overflow:hidden;height:100vh}
+
+/* ---------- Background layers ---------- */
+.bg-canvas,.bg-aurora,.bg-grain,.bg-vignette{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+}
+.bg-aurora{
+  background:
+    radial-gradient(60% 55% at 22% 18%, rgba(214,196,235,.5), transparent 60%),
+    radial-gradient(55% 50% at 82% 12%, rgba(190,219,228,.45), transparent 62%),
+    radial-gradient(70% 60% at 78% 88%, rgba(233,211,164,.55), transparent 60%),
+    radial-gradient(60% 55% at 12% 92%, rgba(240,222,196,.5), transparent 60%),
+    linear-gradient(180deg,var(--bg-0),var(--bg-1) 45%,var(--bg-0));
+  animation:auroraShift 24s var(--ease) infinite alternate;
+}
+@keyframes auroraShift{
+  0%{transform:scale(1) translateY(0);filter:hue-rotate(0deg)}
+  100%{transform:scale(1.12) translateY(-2%);filter:hue-rotate(14deg)}
+}
+.bg-canvas{z-index:1}
+.bg-vignette{
+  z-index:2;
+  background:radial-gradient(120% 100% at 50% 0%, transparent 60%, rgba(150,128,88,.16) 100%);
+}
+.bg-grain{
+  z-index:3;opacity:.035;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Shared type / helpers ---------- */
+.wrap{position:relative;z-index:5;max-width:var(--maxw);margin:0 auto;padding:0 26px}
+.eyebrow{
+  font-size:12px;font-weight:500;letter-spacing:.46em;text-transform:uppercase;
+  color:var(--gold-2);opacity:.9;
+}
+.serif{font-family:var(--font-serif)}
+.gold-text{
+  background:linear-gradient(120deg,var(--gold-1),var(--gold-3) 40%,var(--gold-1) 75%,var(--gold-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.glow{filter:drop-shadow(0 0 22px rgba(171,128,54,.3))}
+
+/* ---------- Ornaments ---------- */
+.divider{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 auto;width:min(340px,72%)}
+.divider .line{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold-line))}
+.divider .line.r{background:linear-gradient(90deg,var(--gold-line),transparent)}
+.divider svg{width:26px;height:26px;color:var(--gold-2);flex:none}
+
+/* ---------- Intro gate ---------- */
+.intro{
+  position:fixed;inset:0;z-index:60;display:grid;place-items:center;text-align:center;
+  padding:32px;
+  background:
+    radial-gradient(70% 60% at 50% 30%, rgba(226,208,236,.55), transparent 65%),
+    radial-gradient(80% 70% at 50% 90%, rgba(236,220,186,.6), transparent 70%),
+    linear-gradient(180deg,#fdfbf6,#f3ecdd);
+  transition:opacity 1.1s var(--ease), visibility 1.1s;
+}
+.intro.hidden{opacity:0;visibility:hidden}
+.intro-inner{max-width:520px;transform:translateY(0);transition:transform 1s var(--ease),opacity 1s}
+.intro.hidden .intro-inner{transform:translateY(-24px);opacity:0}
+.intro .medallion{width:112px;height:112px;margin:0 auto 26px;animation:spinIn 1.4s var(--ease) both, floaty 7s ease-in-out 1.4s infinite}
+.intro .names{font-family:var(--font-serif);font-weight:400;font-size:clamp(38px,9vw,66px);line-height:1.04;letter-spacing:.01em}
+.intro .amp{display:block;font-size:.5em;font-style:italic;color:var(--gold-2);margin:.05em 0;opacity:.9}
+.intro .sub{margin-top:18px;font-size:13px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
+.open-btn{
+  margin-top:38px;position:relative;display:inline-flex;align-items:center;gap:12px;
+  padding:16px 34px;border-radius:999px;cursor:pointer;
+  font-family:var(--font-sans);font-size:12.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:#fffdf7;
+  background:linear-gradient(120deg,var(--gold-1),var(--gold-2) 55%,var(--gold-3));
+  border:none;overflow:hidden;
+  box-shadow:0 10px 40px -12px rgba(171,128,54,.55), inset 0 0 0 1px rgba(255,255,255,.35);
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease);
+  animation:riseUp 1s var(--ease) .5s both;
+}
+.open-btn:hover{transform:translateY(-3px);box-shadow:0 18px 54px -12px rgba(171,128,54,.7), inset 0 0 0 1px rgba(255,255,255,.5)}
+.open-btn:active{transform:translateY(-1px)}
+.open-btn::after{
+  content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);
+  transform:skewX(-18deg);animation:sheen 4.5s ease-in-out 1.6s infinite;
+}
+@keyframes sheen{0%,100%{left:-120%}55%{left:160%}60%{left:160%}}
+@keyframes spinIn{from{opacity:0;transform:rotate(-40deg) scale(.6)}to{opacity:1;transform:rotate(0) scale(1)}}
+@keyframes riseUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}.reveal.d4{transition-delay:.48s}
+
+/* ---------- Sections ---------- */
+section{position:relative;z-index:5}
+.sec{padding:clamp(78px,13vw,140px) 0}
+.sec-label{text-align:center;margin-bottom:30px}
+.sec-label .divider{margin-top:20px}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:96px 26px 60px;position:relative}
+.hero .kicker{margin-bottom:30px}
+.hero .medallion{width:96px;height:96px;margin-bottom:34px;animation:floaty 8s ease-in-out infinite}
+.hero-names{font-family:var(--font-serif);font-weight:400;line-height:.98;letter-spacing:.005em}
+.hero-names .n{display:block;font-size:clamp(58px,17vw,150px)}
+.hero-names .amp{display:block;font-size:clamp(26px,6vw,54px);font-style:italic;color:var(--gold-2);margin:.06em 0 .04em;opacity:.92}
+.hero .meta{margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.date-band{display:flex;align-items:center;gap:18px;font-family:var(--font-serif);font-size:clamp(20px,4.4vw,30px);letter-spacing:.12em;color:var(--ivory)}
+.date-band span{opacity:.55;font-size:.7em}
+.hero .place{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--muted)}
+.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:9px;color:var(--muted-2)}
+.scroll-cue .txt{font-size:10px;letter-spacing:.36em;text-transform:uppercase}
+.scroll-cue .mouse{width:22px;height:36px;border:1px solid rgba(171,128,54,.4);border-radius:12px;position:relative}
+.scroll-cue .mouse::after{content:"";position:absolute;top:7px;left:50%;width:3px;height:6px;border-radius:2px;background:var(--gold-2);transform:translateX(-50%);animation:wheel 1.8s var(--ease) infinite}
+@keyframes wheel{0%{opacity:0;transform:translate(-50%,0)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,12px)}}
+
+/* GREETING */
+.greeting{text-align:center}
+.greeting .lead{
+  font-family:var(--font-serif);font-weight:300;
+  font-size:clamp(21px,3.5vw,30px);line-height:1.6;color:var(--ivory);
+  max-width:760px;margin:0 auto;
+}
+.greeting .lead b{font-weight:500;font-style:italic}
+.greeting .lead .hl{color:var(--gold-1);font-style:italic;font-weight:400}
+.greeting .addr{
+  margin:0 auto 26px;max-width:660px;font-size:15px;line-height:1.9;color:var(--muted);
+  letter-spacing:.01em;
+}
+
+/* PROGRAM / details */
+.grid{display:grid;gap:20px}
+@media(min-width:720px){.detail-grid{grid-template-columns:1fr 1fr}}
+.card{
+  position:relative;padding:38px 30px;border-radius:22px;
+  background:var(--panel);border:1px solid var(--panel-brd);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  overflow:hidden;transition:border-color .6s var(--ease),transform .6s var(--ease),box-shadow .6s var(--ease);
+}
+.card:hover{border-color:var(--panel-brd-hi);transform:translateY(-4px);box-shadow:0 30px 60px -30px rgba(120,95,45,.35)}
+.card::before{content:"";position:absolute;inset:0;border-radius:22px;padding:1px;
+  background:linear-gradient(140deg,rgba(171,128,54,.35),transparent 40%,transparent 65%,rgba(171,128,54,.18));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;opacity:.7;pointer-events:none}
+.card .c-ico{width:40px;height:40px;color:var(--gold-2);margin-bottom:20px}
+.card .c-title{font-family:var(--font-serif);font-size:26px;font-weight:500;margin-bottom:6px}
+.card .c-sub{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted-2);margin-bottom:20px}
+
+.date-big{text-align:center;padding-top:6px}
+.date-big .dd{font-family:var(--font-serif);font-size:clamp(62px,15vw,104px);line-height:1;letter-spacing:.01em}
+.date-big .mm{font-size:15px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-2);margin-top:10px}
+.date-big .wd{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+
+.timeline{list-style:none;display:flex;flex-direction:column;gap:4px}
+.timeline li{display:flex;align-items:baseline;gap:18px;padding:16px 0;border-bottom:1px solid rgba(171,128,54,.12)}
+.timeline li:last-child{border-bottom:none}
+.timeline .t{font-family:var(--font-serif);font-size:30px;color:var(--gold-1);min-width:86px}
+.timeline .e{font-size:16px;letter-spacing:.02em}
+.timeline .e small{display:block;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-2);margin-top:3px}
+
+/* COUNTDOWN */
+.countdown{text-align:center}
+.cd-grid{display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(10px,3vw,26px);margin-top:8px}
+.cd-cell{
+  position:relative;min-width:clamp(72px,20vw,124px);padding:26px 12px 20px;border-radius:18px;
+  background:var(--panel);border:1px solid var(--panel-brd);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.cd-cell .num{
+  font-family:var(--font-serif);font-weight:500;font-size:clamp(38px,9vw,68px);line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.cd-cell .lab{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+.cd-note{margin-top:30px;font-family:var(--font-serif);font-style:italic;font-size:20px;color:var(--gold-1);min-height:1.4em}
+
+/* LOCATION */
+.loc{text-align:center}
+.loc .venue{font-family:var(--font-serif);font-size:clamp(34px,7vw,58px);font-weight:500;line-height:1.05}
+.loc .addr{margin-top:20px;font-size:16px;line-height:2;color:var(--muted);letter-spacing:.03em}
+.loc .addr b{color:var(--ivory);font-weight:500}
+.map-btn{
+  margin-top:38px;display:inline-flex;align-items:center;gap:12px;
+  padding:17px 32px;border-radius:999px;text-decoration:none;cursor:pointer;
+  font-size:12.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-1);
+  background:rgba(171,128,54,.06);border:1px solid var(--panel-brd-hi);
+  transition:all .5s var(--ease);
+}
+.map-btn:hover{background:rgba(171,128,54,.14);transform:translateY(-3px);box-shadow:0 16px 40px -18px rgba(171,128,54,.5)}
+.map-btn svg{width:19px;height:19px}
+
+/* HOSTS */
+.hosts{text-align:center}
+.hosts .names{font-family:var(--font-serif);font-size:clamp(38px,8vw,68px);font-weight:500;line-height:1.1}
+.hosts .names .sep{color:var(--gold-2);font-style:italic;margin:0 .18em;font-weight:400}
+.hosts .role{margin-top:16px;font-size:12px;letter-spacing:.36em;text-transform:uppercase;color:var(--muted)}
+
+/* CLOSING */
+.closing{text-align:center;padding-bottom:clamp(90px,16vw,160px)}
+.closing .medallion{width:78px;height:78px;margin:0 auto 34px;animation:floaty 8s ease-in-out infinite}
+.closing .line{font-family:var(--font-serif);font-weight:300;font-style:italic;font-size:clamp(26px,5.5vw,44px);line-height:1.35;max-width:620px;margin:0 auto}
+.closing .cnames{margin-top:40px;font-family:var(--font-serif);font-size:clamp(30px,7vw,52px);letter-spacing:.02em}
+.closing .cnames .amp{font-style:italic;color:var(--gold-2);margin:0 .12em}
+.closing .cdate{margin-top:18px;font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--muted-2)}
+
+/* Music toggle */
+.music{
+  position:fixed;right:20px;bottom:20px;z-index:40;width:50px;height:50px;border-radius:50%;
+  display:grid;place-items:center;cursor:pointer;
+  background:var(--panel);border:1px solid var(--panel-brd-hi);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  color:var(--gold-1);transition:transform .4s var(--ease),background .4s;
+  opacity:0;transform:translateY(20px) scale(.8);pointer-events:none;
+}
+.music.show{opacity:1;transform:none;pointer-events:auto}
+.music:hover{background:rgba(171,128,54,.14)}
+.music .bars{display:flex;align-items:flex-end;gap:2.5px;height:16px}
+.music .bars i{width:2.5px;background:currentColor;border-radius:2px;height:6px}
+.music.playing .bars i{animation:eq .9s ease-in-out infinite}
+.music .bars i:nth-child(2){animation-delay:.2s}.music .bars i:nth-child(3){animation-delay:.4s}.music .bars i:nth-child(4){animation-delay:.15s}
+@keyframes eq{0%,100%{height:5px}50%{height:15px}}
+.music .play-ico{width:15px;height:15px;margin-left:2px}
+/* Playing -> animated bars (tap to pause). Paused -> play triangle (tap to resume). */
+.music.playing .play-ico{display:none}
+.music:not(.playing) .bars{display:none}
+/* Gentle ring so guests notice the control while music plays */
+.music.playing.show{animation:musicPulse 2.8s ease-in-out infinite}
+@keyframes musicPulse{0%,100%{box-shadow:0 0 0 0 rgba(171,128,54,0)}50%{box-shadow:0 0 0 7px rgba(171,128,54,.09)}}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important;transition-duration:.001ms !important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+
+<body class="locked">
+
+<!-- Background -->
+<div class="bg-aurora"></div>
+<canvas class="bg-canvas" id="stars"></canvas>
+<div class="bg-vignette"></div>
+<div class="bg-grain"></div>
+
+<!-- ============ INTRO GATE ============ -->
+<div class="intro" id="intro">
+  <div class="intro-inner">
+    <div class="medallion glow">
+      <!-- shanyrak medallion -->
+      <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" style="color:var(--gold-2)">
+        <circle cx="60" cy="60" r="47" stroke-width="1"/>
+        <circle cx="60" cy="60" r="39" stroke-width="1" opacity=".55"/>
+        <circle cx="60" cy="60" r="12" stroke-width="1"/>
+        <path d="M60 21v78M21 60h78" stroke-width="1"/>
+        <path d="M35 35q25 8 50 0M35 85q25-8 50 0M35 35q8 25 0 50M85 35q-8 25 0 50" stroke-width="1" opacity=".7"/>
+        <circle cx="60" cy="60" r="2.4" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+    <h1 class="names"><span class="gold-text">Айдос</span><span class="amp">&amp;</span><span class="gold-text">Динара</span></h1>
+    <p class="sub">Үйлену тойына шақыру</p>
+    <button class="open-btn" id="openBtn" aria-label="Шақыруды ашу">Шақыруды ашу</button>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <p class="eyebrow kicker reveal">Үйлену тойы · 2026</p>
+  <div class="medallion glow reveal d1">
+    <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" style="color:var(--gold-2);width:100%;height:100%">
+      <circle cx="60" cy="60" r="47" stroke-width="1"/>
+      <circle cx="60" cy="60" r="39" stroke-width="1" opacity=".5"/>
+      <circle cx="60" cy="60" r="12" stroke-width="1"/>
+      <path d="M60 21v78M21 60h78" stroke-width="1"/>
+      <path d="M35 35q25 8 50 0M35 85q25-8 50 0M35 35q8 25 0 50M85 35q-8 25 0 50" stroke-width="1" opacity=".7"/>
+      <circle cx="60" cy="60" r="2.4" fill="currentColor" stroke="none"/>
+    </svg>
+  </div>
+  <h1 class="hero-names reveal d2">
+    <span class="n gold-text">Айдос</span>
+    <span class="amp">&amp;</span>
+    <span class="n gold-text">Динара</span>
+  </h1>
+  <div class="meta reveal d3">
+    <div class="date-band"><em class="serif">08</em><span>·</span><em class="serif">08</em><span>·</span><em class="serif">2026</em></div>
+    <p class="place">Сарыағаш · Сенбі · 19:00</p>
+  </div>
+  <div class="scroll-cue reveal d4">
+    <div class="mouse"></div>
+    <span class="txt">Төмен қарай</span>
+  </div>
+</section>
+
+<!-- ============ GREETING ============ -->
+<section class="sec greeting">
+  <div class="wrap">
+    <div class="sec-label reveal">
+      <p class="eyebrow">Қымбатты қонақтар</p>
+      <div class="divider"><span class="line"></span>
+        <svg viewBox="0 0 40 24" fill="none" stroke="currentColor"><path d="M2 12h11M27 12h11" stroke-width="1"/><path d="M20 4l5 8-5 8-5-8z" stroke-width="1"/><circle cx="20" cy="12" r="1.6" fill="currentColor"/></svg>
+        <span class="line r"></span>
+      </div>
+    </div>
+    <p class="addr reveal d1">Құрметті ағайын-туыс бауырлар, құда-жекжат,<br>нағашы-жиендер, дос-жарандар, әріптестер, көршілер!</p>
+    <p class="lead reveal d2">
+      Сіздерді баламыз <span class="hl">Айдос</span> пен келініміз <span class="hl">Динараның</span>
+      үйлену тойына арналған <b>ақ дастарханымыздың</b> қадірлі қонағы болуға шақырамыз!
+    </p>
+  </div>
+</section>
+
+<!-- ============ PROGRAM ============ -->
+<section class="sec program">
+  <div class="wrap">
+    <div class="sec-label reveal">
+      <p class="eyebrow">Той салтанаты</p>
+      <div class="divider"><span class="line"></span>
+        <svg viewBox="0 0 40 24" fill="none" stroke="currentColor"><path d="M2 12h11M27 12h11" stroke-width="1"/><path d="M20 4l5 8-5 8-5-8z" stroke-width="1"/><circle cx="20" cy="12" r="1.6" fill="currentColor"/></svg>
+        <span class="line r"></span>
+      </div>
+    </div>
+    <div class="grid detail-grid">
+      <div class="card reveal d1">
+        <div class="date-big">
+          <div class="dd gold-text">08</div>
+          <div class="mm">Тамыз 2026</div>
+          <div class="wd">Сенбі</div>
+        </div>
+      </div>
+      <div class="card reveal d2">
+        <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9" stroke-width="1.2"/><path d="M12 7v5l3.5 2" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <div class="c-title">Бағдарлама</div>
+        <div class="c-sub">Кеш реті</div>
+        <ul class="timeline">
+          <li><span class="t serif">19:00</span><span class="e">Беташар<small>Салтанатты рәсім</small></span></li>
+          <li><span class="t serif">19:30</span><span class="e">Той<small>Ақ дастарқан</small></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COUNTDOWN ============ -->
+<section class="sec countdown">
+  <div class="wrap">
+    <div class="sec-label reveal">
+      <p class="eyebrow">Тойға дейін</p>
+      <div class="divider"><span class="line"></span>
+        <svg viewBox="0 0 40 24" fill="none" stroke="currentColor"><path d="M2 12h11M27 12h11" stroke-width="1"/><path d="M20 4l5 8-5 8-5-8z" stroke-width="1"/><circle cx="20" cy="12" r="1.6" fill="currentColor"/></svg>
+        <span class="line r"></span>
+      </div>
+    </div>
+    <div class="cd-grid reveal d1">
+      <div class="cd-cell"><div class="num gold-text" id="cd-d">00</div><div class="lab">Күн</div></div>
+      <div class="cd-cell"><div class="num gold-text" id="cd-h">00</div><div class="lab">Сағат</div></div>
+      <div class="cd-cell"><div class="num gold-text" id="cd-m">00</div><div class="lab">Минут</div></div>
+      <div class="cd-cell"><div class="num gold-text" id="cd-s">00</div><div class="lab">Секунд</div></div>
+    </div>
+    <p class="cd-note reveal d2" id="cd-note"></p>
+  </div>
+</section>
+
+<!-- ============ LOCATION ============ -->
+<section class="sec loc">
+  <div class="wrap">
+    <div class="sec-label reveal">
+      <p class="eyebrow">Мекен-жайымыз</p>
+      <div class="divider"><span class="line"></span>
+        <svg viewBox="0 0 40 24" fill="none" stroke="currentColor"><path d="M2 12h11M27 12h11" stroke-width="1"/><path d="M20 4l5 8-5 8-5-8z" stroke-width="1"/><circle cx="20" cy="12" r="1.6" fill="currentColor"/></svg>
+        <span class="line r"></span>
+      </div>
+    </div>
+    <h2 class="venue gold-text reveal d1">«Сүндет ата»<br>тойханасы</h2>
+    <p class="addr reveal d2">
+      <b>Сарыағаш қаласы</b><br>
+      Учхоз Қапланбек
+    </p>
+    <a class="map-btn reveal d3" href="https://go.2gis.com/AiWc7" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s7-6.3 7-11a7 7 0 10-14 0c0 4.7 7 11 7 11z" stroke-width="1.3"/><circle cx="12" cy="10" r="2.6" stroke-width="1.3"/></svg>
+      2GIS картадан ашу
+    </a>
+  </div>
+</section>
+
+<!-- ============ HOSTS ============ -->
+<section class="sec hosts">
+  <div class="wrap">
+    <div class="sec-label reveal">
+      <p class="eyebrow">Той иелері</p>
+      <div class="divider"><span class="line"></span>
+        <svg viewBox="0 0 40 24" fill="none" stroke="currentColor"><path d="M2 12h11M27 12h11" stroke-width="1"/><path d="M20 4l5 8-5 8-5-8z" stroke-width="1"/><circle cx="20" cy="12" r="1.6" fill="currentColor"/></svg>
+        <span class="line r"></span>
+      </div>
+    </div>
+    <h2 class="names reveal d1"><span class="gold-text">Мұхтар</span><span class="sep">—</span><span class="gold-text">Айгүл</span></h2>
+    <p class="role reveal d2">Сізді қуанышымызға ортақ болуға шақырады</p>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="sec closing">
+  <div class="wrap">
+    <div class="medallion glow reveal">
+      <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" style="color:var(--gold-2);width:100%;height:100%">
+        <circle cx="60" cy="60" r="47" stroke-width="1"/>
+        <circle cx="60" cy="60" r="12" stroke-width="1"/>
+        <path d="M60 21v78M21 60h78" stroke-width="1"/>
+        <path d="M35 35q25 8 50 0M35 85q25-8 50 0M35 35q8 25 0 50M85 35q-8 25 0 50" stroke-width="1" opacity=".7"/>
+        <circle cx="60" cy="60" r="2.4" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+    <p class="line reveal d1">Тойымыздың қадірлі<br>қонағы болыңыздар!</p>
+    <div class="cnames reveal d2"><span class="gold-text">Айдос</span><span class="amp serif">&amp;</span><span class="gold-text">Динара</span></div>
+    <p class="cdate reveal d3">08 · 08 · 2026 · Сарыағаш</p>
+  </div>
+</section>
+
+<!-- Music toggle. Audio lives at assets/music.m4a (AAC — plays in all modern browsers). -->
+<button class="music" id="music" type="button" aria-label="Музыканы қосу" title="Музыканы қосу">
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <svg class="play-ico" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+</button>
+<audio id="audio" loop preload="none">
+  <source src="assets/music.m4a" type="audio/mp4" />
+  <source src="assets/music.mp3" type="audio/mpeg" />
+</audio>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Intro gate ---------- */
+  var intro = document.getElementById("intro");
+  var openBtn = document.getElementById("openBtn");
+  var body = document.body;
+  function openInvite(){
+    intro.classList.add("hidden");
+    body.classList.remove("locked");
+    setTimeout(function(){ if(intro && intro.parentNode) intro.style.display="none"; }, 1200);
+    revealNow();     // reveal hero immediately
+    setupMusic();    // load audio; control appears only if a track exists
+  }
+  openBtn.addEventListener("click", openInvite);
+
+  /* ---------- Scroll reveal ---------- */
+  var revealEls = [].slice.call(document.querySelectorAll(".reveal"));
+  var io = ("IntersectionObserver" in window) ? new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, {threshold:.14, rootMargin:"0px 0px -8% 0px"}) : null;
+  function observeAll(){ if(io) revealEls.forEach(function(el){ io.observe(el); }); else revealEls.forEach(function(el){ el.classList.add("in"); }); }
+  function revealNow(){ // hero + anything already in view
+    document.querySelectorAll(".hero .reveal").forEach(function(el){ el.classList.add("in"); });
+  }
+  observeAll();
+
+  /* ---------- Countdown ---------- */
+  var target = new Date("2026-08-08T19:00:00+05:00").getTime();
+  var dE=document.getElementById("cd-d"),hE=document.getElementById("cd-h"),mE=document.getElementById("cd-m"),sE=document.getElementById("cd-s"),note=document.getElementById("cd-note");
+  function pad(n){ return (n<10?"0":"")+n; }
+  function tick(){
+    var diff = target - Date.now();
+    if(diff <= 0){
+      dE.textContent="00";hE.textContent="00";mE.textContent="00";sE.textContent="00";
+      note.textContent = (diff > -18*3600*1000) ? "Той басталды! Қош келдіңіздер" : "Тойымыз өтті. Рахмет!";
+      return;
+    }
+    var s=Math.floor(diff/1000);
+    dE.textContent=pad(Math.floor(s/86400));
+    hE.textContent=pad(Math.floor(s%86400/3600));
+    mE.textContent=pad(Math.floor(s%3600/60));
+    sE.textContent=pad(s%60);
+    var days=Math.floor(s/86400);
+    note.textContent = days>0 ? ("Тойға "+days+" күн қалды") : "Бүгін кездесеміз!";
+  }
+  tick(); setInterval(tick,1000);
+
+  /* ---------- Music ----------
+     Track: assets/music.m4a. It launches automatically the moment the
+     invitation is opened (the tap is a valid autoplay gesture), and the
+     floating button pauses / resumes it. The control only appears once a
+     valid audio file has loaded, so there is never a dead button. */
+  var audio=document.getElementById("audio"), mBtn=document.getElementById("music"), musicReady=false;
+
+  // Keep the button in sync with the true audio state at all times.
+  function reflect(){
+    var playing = !!audio && !audio.paused && !audio.ended;
+    mBtn.classList.toggle("playing", playing);
+    var lbl = playing ? "Музыканы тоқтату" : "Музыканы қосу";
+    mBtn.setAttribute("aria-label", lbl);
+    mBtn.setAttribute("title", lbl);
+  }
+
+  function setupMusic(){
+    if(!audio) return;
+    audio.addEventListener("play", reflect);
+    audio.addEventListener("pause", reflect);
+    audio.addEventListener("canplay", function(){
+      if(musicReady) return; musicReady=true;
+      mBtn.classList.add("show");     // reveal the control
+      tryMusic();                     // launch music on open (allowed: user tapped)
+    });
+    audio.addEventListener("error", function(){ mBtn.classList.remove("show"); mBtn.style.display="none"; });
+    try{ audio.load(); }catch(e){}
+  }
+  function tryMusic(){
+    if(!audio) return;
+    var p=audio.play();
+    if(p && p.then){ p.catch(function(){ reflect(); }); }  // if blocked, show the play button
+  }
+  mBtn.addEventListener("click", function(){
+    if(!audio) return;
+    if(audio.paused){ audio.play().catch(function(){}); }
+    else { audio.pause(); }
+  });
+
+  /* ---------- Starfield / gold dust ---------- */
+  if(!reduce){
+    var cv=document.getElementById("stars"), ctx=cv.getContext("2d"), W,H,DPR=Math.min(window.devicePixelRatio||1,2), dust=[];
+    function resize(){ W=cv.width=innerWidth*DPR; H=cv.height=innerHeight*DPR; cv.style.width=innerWidth+"px"; cv.style.height=innerHeight+"px"; build(); }
+    function build(){
+      dust=[];
+      var count=Math.min(90, Math.floor(innerWidth*innerHeight/16000));
+      for(var i=0;i<count;i++){
+        dust.push({
+          x:Math.random()*W, y:Math.random()*H,
+          r:(Math.random()*1.5+.3)*DPR,
+          a:Math.random()*.6+.15,
+          vy:(Math.random()*.14+.03)*DPR,
+          vx:(Math.random()-.5)*.08*DPR,
+          tw:Math.random()*Math.PI*2, ts:Math.random()*.03+.008
+        });
+      }
+    }
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<dust.length;i++){
+        var d=dust[i]; d.y-=d.vy; d.x+=d.vx; d.tw+=d.ts;
+        if(d.y< -10){ d.y=H+10; d.x=Math.random()*W; }
+        var al=d.a*(0.55+0.45*Math.sin(d.tw));
+        ctx.beginPath();
+        ctx.fillStyle="rgba(160,120,50,"+al.toFixed(3)+")";
+        ctx.arc(d.x,d.y,d.r,0,6.283);
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    addEventListener("resize", resize, {passive:true});
+    resize(); draw();
+  }
+
+  /* Skip gate if user prefers reduced motion? keep gate but allow open on Enter */
+  document.addEventListener("keydown", function(e){ if((e.key==="Enter"||e.key===" ") && !intro.classList.contains("hidden")){ openInvite(); } });
+})();
+</script>
+</body>
+</html>
