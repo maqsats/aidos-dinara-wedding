@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Айдос &amp; Динара — Үйлену тойы (v2)</title>
+<meta name="description" content="Айдос пен Динараның үйлену тойына арналған шақыру. 8 тамыз 2026 жыл, Сарыағаш." />
+<meta name="theme-color" content="#efe4d4" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%8D%3C/text%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   AIDOS & DINARA — Wedding invitation · DESIGN v2
+   "Дала" — cinematic editorial. Photographic, warm, romantic.
+   LOCAL DRAFT ONLY — not deployed.
+   ============================================================ */
+
+:root{
+  --paper:#f6efe3;
+  --paper-2:#efe5d5;
+  --cream:#fdfaf4;
+  --ink:#40372e;
+  --ink-soft:#7c7062;
+  --ink-faint:#a99e8d;
+  --rose:#bd8079;
+  --rose-deep:#a5645d;
+  --gold:#b98f56;
+  --gold-deep:#977338;
+  --line:rgba(120,96,60,.24);
+  --hero:url('assets/hero.png');
+  --serif:"Playfair Display", Georgia, serif;
+  --sans:"Manrope", system-ui, -apple-system, sans-serif;
+  --maxw:1040px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--paper);color:var(--ink);
+  line-height:1.7;overflow-x:hidden;min-height:100vh;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+body.locked{overflow:hidden;height:100vh}
+.petals{position:fixed;inset:0;pointer-events:none;z-index:2}
+
+/* ---- helpers ---- */
+.eyebrow{font-size:11.5px;font-weight:500;letter-spacing:.44em;text-transform:uppercase;color:var(--gold-deep)}
+.serif{font-family:var(--serif)}
+.wrap{position:relative;z-index:5;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.rule{display:flex;align-items:center;justify-content:center;gap:14px;margin:22px auto 0;width:min(280px,64%)}
+.rule i{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--line))}
+.rule i.r{background:linear-gradient(90deg,var(--line),transparent)}
+.rule svg{width:22px;height:22px;color:var(--gold);flex:none}
+
+/* ---- reveal ---- */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}
+
+/* ---- intro gate ---- */
+.intro{position:fixed;inset:0;z-index:60;display:grid;place-items:center;text-align:center;padding:34px;
+  background:radial-gradient(80% 70% at 50% 30%,#fffdf8,#f0e6d5);
+  transition:opacity 1.2s var(--ease),visibility 1.2s}
+.intro.hidden{opacity:0;visibility:hidden}
+.intro-in{max-width:520px;transition:transform 1s var(--ease),opacity 1s}
+.intro.hidden .intro-in{transform:translateY(-22px);opacity:0}
+.intro .frame{padding:44px 40px;border:1px solid var(--line);position:relative}
+.intro .frame::before,.intro .frame::after{content:"";position:absolute;width:12px;height:12px;border:1px solid var(--gold)}
+.intro .frame::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
+.intro .frame::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
+.intro .k{margin-bottom:22px}
+.intro .nm{font-family:var(--serif);font-weight:500;font-size:clamp(40px,9vw,66px);line-height:1.05;color:var(--ink)}
+.intro .nm .amp{font-style:italic;color:var(--rose);font-weight:400;margin:0 .12em}
+.intro .sub{margin-top:14px;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-soft)}
+.open-btn{margin-top:34px;display:inline-flex;align-items:center;gap:11px;padding:15px 34px;border-radius:2px;cursor:pointer;
+  font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--cream);
+  background:linear-gradient(120deg,var(--rose),var(--rose-deep));border:none;position:relative;overflow:hidden;
+  box-shadow:0 12px 34px -14px rgba(165,100,93,.7);transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+  animation:rise 1s var(--ease) .4s both}
+.open-btn:hover{transform:translateY(-3px);box-shadow:0 18px 44px -14px rgba(165,100,93,.85)}
+.open-btn::after{content:"";position:absolute;top:0;left:-120%;width:55%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);animation:sheen 5s ease-in-out 1.4s infinite}
+@keyframes sheen{0%,100%{left:-120%}55%,60%{left:170%}}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ---- HERO (full-bleed photo) ---- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;
+  align-items:center;text-align:center;overflow:hidden;padding:0 26px 15svh}
+.hero .bg{position:absolute;inset:0;background:var(--hero) center 32% / cover no-repeat;z-index:0;
+  transform:scale(1.04);animation:kb 18s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.14)}}
+.hero .scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(46,30,26,.74) 0%,rgba(46,30,26,.28) 38%,rgba(46,30,26,.12) 62%,rgba(46,30,26,.34) 100%)}
+.hero .content{position:relative;z-index:3;color:#fbf3ea}
+.hero .k{color:#f2d9b8;margin-bottom:20px;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+.hero .names{font-family:var(--serif);font-weight:500;line-height:.98;letter-spacing:.01em;text-shadow:0 2px 26px rgba(30,16,12,.5)}
+.hero .names .n{display:block;font-size:clamp(56px,15vw,128px)}
+.hero .names .amp{display:block;font-style:italic;font-weight:400;color:#eec9a6;font-size:clamp(26px,6vw,52px);margin:.02em 0}
+.hero .meta{margin-top:26px}
+.hero .date{font-family:var(--serif);font-size:clamp(19px,4vw,26px);letter-spacing:.18em}
+.hero .date span{opacity:.6;margin:0 .35em}
+.hero .place{margin-top:8px;font-size:11.5px;letter-spacing:.36em;text-transform:uppercase;color:#e8d3ba}
+.hero .cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;color:#f0ddc4;display:flex;flex-direction:column;align-items:center;gap:7px}
+.hero .cue span{font-size:9.5px;letter-spacing:.34em;text-transform:uppercase}
+.hero .cue .a{width:1px;height:34px;background:linear-gradient(#f0ddc4,transparent);animation:drop 1.9s var(--ease) infinite}
+@keyframes drop{0%{opacity:0;transform:scaleY(.3)}40%{opacity:1}100%{opacity:0;transform:translateY(14px) scaleY(1)}}
+
+/* ---- sections ---- */
+section{position:relative;z-index:5}
+.sec{padding:clamp(80px,13vw,150px) 0}
+.head{text-align:center;margin-bottom:44px}
+.head .eyebrow{display:block}
+.head h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5.5vw,46px);margin-top:14px;color:var(--ink)}
+
+/* greeting */
+.greet{text-align:center}
+.greet .addr{max-width:640px;margin:0 auto 26px;font-size:14.5px;line-height:1.95;color:var(--ink-soft);letter-spacing:.02em}
+.greet .lead{max-width:720px;margin:0 auto;font-family:var(--serif);font-weight:400;font-size:clamp(21px,3.3vw,31px);line-height:1.62;color:var(--ink)}
+.greet .lead em{color:var(--rose-deep);font-style:italic}
+.greet .lead b{font-weight:600;font-style:italic}
+
+/* program — editorial two column */
+.prog{display:flex;align-items:stretch;justify-content:center;gap:0;max-width:760px;margin:0 auto;
+  background:var(--cream);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.prog>div{flex:1;padding:clamp(30px,5vw,52px) clamp(22px,4vw,44px)}
+.prog .p-date{text-align:center;display:flex;flex-direction:column;justify-content:center;background:var(--paper-2)}
+.prog .p-date .d{font-family:var(--serif);font-size:clamp(64px,13vw,104px);line-height:.9;color:var(--gold-deep)}
+.prog .p-date .m{margin-top:12px;font-size:13px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink)}
+.prog .p-date .w{margin-top:8px;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-faint)}
+.prog .p-time{display:flex;flex-direction:column;justify-content:center;gap:0}
+.prog .p-time .row{display:flex;align-items:baseline;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.prog .p-time .row:last-child{border-bottom:none}
+.prog .p-time .t{font-family:var(--serif);font-size:27px;color:var(--rose-deep);min-width:74px}
+.prog .p-time .e{font-size:15.5px;color:var(--ink)}
+.prog .p-time .e small{display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-top:2px}
+@media(max-width:620px){.prog{flex-direction:column}.prog>div{padding:34px 30px}.prog .p-date{border-bottom:1px solid var(--line)}}
+
+/* countdown — editorial inline */
+.cd{text-align:center}
+.cd .row{display:flex;align-items:flex-start;justify-content:center;gap:clamp(14px,4vw,40px)}
+.cd .u{min-width:56px}
+.cd .u .n{font-family:var(--serif);font-size:clamp(42px,9vw,76px);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.cd .u .l{margin-top:12px;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-faint)}
+.cd .sep{width:1px;align-self:stretch;background:var(--line);margin-top:6px}
+.cd .note{margin-top:30px;font-family:var(--serif);font-style:italic;font-size:19px;color:var(--rose-deep);min-height:1.3em}
+
+/* location */
+.loc{text-align:center}
+.loc .venue{font-family:var(--serif);font-weight:500;font-size:clamp(32px,6.4vw,54px);line-height:1.06;color:var(--ink)}
+.loc .addr{margin-top:18px;font-size:15.5px;line-height:1.95;color:var(--ink-soft);letter-spacing:.02em}
+.loc .addr b{color:var(--ink);font-weight:600}
+.map{margin-top:34px;display:inline-flex;align-items:center;gap:11px;padding:15px 30px;border-radius:2px;text-decoration:none;cursor:pointer;
+  font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--rose-deep);
+  background:transparent;border:1px solid var(--rose);transition:all .5s var(--ease)}
+.map:hover{background:var(--rose);color:var(--cream);transform:translateY(-2px);box-shadow:0 14px 32px -16px rgba(165,100,93,.7)}
+.map svg{width:18px;height:18px}
+
+/* hosts */
+.hosts{text-align:center}
+.hosts .n{font-family:var(--serif);font-weight:500;font-size:clamp(34px,7vw,60px);color:var(--ink)}
+.hosts .n .s{color:var(--rose);font-style:italic;margin:0 .16em}
+.hosts .role{margin-top:14px;font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* closing — cream sign-off */
+.closing{text-align:center;padding:clamp(84px,14vw,150px) 0 clamp(94px,16vw,168px);background:var(--paper-2)}
+.closing .c{max-width:640px}
+.closing .rule{margin:0 auto 30px}
+.closing .line{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(25px,5vw,44px);line-height:1.34;max-width:600px;margin:0 auto;color:var(--ink)}
+.closing .cn{margin-top:34px;font-family:var(--serif);font-size:clamp(28px,6vw,48px);letter-spacing:.02em;color:var(--ink)}
+.closing .cn .amp{font-style:italic;color:var(--rose);margin:0 .12em}
+.closing .cd2{margin-top:14px;font-size:11.5px;letter-spacing:.4em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* music */
+.music{position:fixed;right:20px;bottom:20px;z-index:40;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+  background:rgba(253,250,244,.82);border:1px solid var(--rose);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  color:var(--rose-deep);transition:transform .4s var(--ease),background .4s;opacity:0;transform:translateY(18px) scale(.85);pointer-events:none}
+.music.show{opacity:1;transform:none;pointer-events:auto}
+.music:hover{background:var(--cream)}
+.music .bars{display:flex;align-items:flex-end;gap:2.5px;height:16px}
+.music .bars i{width:2.5px;background:currentColor;border-radius:2px;height:6px}
+.music.playing .bars i{animation:eq .9s ease-in-out infinite}
+.music .bars i:nth-child(2){animation-delay:.2s}.music .bars i:nth-child(3){animation-delay:.4s}.music .bars i:nth-child(4){animation-delay:.15s}
+@keyframes eq{0%,100%{height:5px}50%{height:15px}}
+.music .play-ico{width:15px;height:15px;margin-left:2px}
+.music.playing .play-ico{display:none}
+.music:not(.playing) .bars{display:none}
+.music.playing.show{animation:mp 2.8s ease-in-out infinite}
+@keyframes mp{0%,100%{box-shadow:0 0 0 0 rgba(189,128,121,0)}50%{box-shadow:0 0 0 7px rgba(189,128,121,.12)}}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important;transition-duration:.001ms !important}
+  .reveal{opacity:1;transform:none}html{scroll-behavior:auto}
+  .hero .bg{transform:none}
+}
+</style>
+</head>
+<body class="locked">
+
+<canvas class="petals" id="petals"></canvas>
+
+<!-- ===== INTRO ===== -->
+<div class="intro" id="intro">
+  <div class="intro-in">
+    <div class="frame">
+      <div class="k eyebrow">Үйлену тойына шақыру</div>
+      <div class="nm">Айдос<span class="amp">&amp;</span>Динара</div>
+      <div class="sub">8 тамыз 2026</div>
+    </div>
+    <button class="open-btn" id="openBtn" type="button">Шақыруды ашу</button>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="bg"></div><div class="scrim"></div>
+  <div class="content">
+    <div class="k eyebrow reveal">Үйлену тойы · 2026</div>
+    <h1 class="names reveal d1"><span class="n">Айдос</span><span class="amp">&amp;</span><span class="n">Динара</span></h1>
+    <div class="meta reveal d2">
+      <div class="date">08<span>·</span>08<span>·</span>2026</div>
+      <div class="place">Сарыағаш · Сенбі · 19:00</div>
+    </div>
+  </div>
+  <div class="cue reveal d3"><span>Төмен қарай</span><i class="a"></i></div>
+</header>
+
+<!-- ===== GREETING ===== -->
+<section class="sec greet">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Қымбатты қонақтар</span>
+      <div class="rule"><i></i><svg viewBox="0 0 40 24" fill="none" stroke="currentColor"><path d="M2 12h12M26 12h12" stroke-width="1"/><path d="M20 5c3 3 3 11 0 14c-3-3-3-11 0-14z" stroke-width="1"/></svg><i class="r"></i></div>
+    </div>
+    <p class="addr reveal d1">Құрметті ағайын-туыс бауырлар, құда-жекжат,<br>нағашы-жиендер, дос-жарандар, әріптестер, көршілер!</p>
+    <p class="lead reveal d2">Сіздерді баламыз <em>Айдос</em> пен келініміз <em>Динараның</em> үйлену тойына арналған <b>ақ дастарханымыздың</b> қадірлі қонағы болуға шақырамыз!</p>
+  </div>
+</section>
+
+<!-- ===== PROGRAM ===== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Той салтанаты</span><h2>Кеш бағдарламасы</h2></div>
+    <div class="prog reveal d1">
+      <div class="p-date">
+        <div class="d">08</div><div class="m">Тамыз 2026</div><div class="w">Сенбі</div>
+      </div>
+      <div class="p-time">
+        <div class="row"><span class="t serif">19:00</span><span class="e">Беташар<small>Салтанатты рәсім</small></span></div>
+        <div class="row"><span class="t serif">19:30</span><span class="e">Той<small>Ақ дастарқан</small></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COUNTDOWN ===== -->
+<section class="sec cd">
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Тойға дейін</span></div>
+    <div class="row reveal d1">
+      <div class="u"><div class="n" id="cd-d">00</div><div class="l">Күн</div></div>
+      <div class="sep"></div>
+      <div class="u"><div class="n" id="cd-h">00</div><div class="l">Сағат</div></div>
+      <div class="sep"></div>
+      <div class="u"><div class="n" id="cd-m">00</div><div class="l">Минут</div></div>
+      <div class="sep"></div>
+      <div class="u"><div class="n" id="cd-s">00</div><div class="l">Секунд</div></div>
+    </div>
+    <p class="note reveal d2" id="cd-note"></p>
+  </div>
+</section>
+
+<!-- ===== LOCATION ===== -->
+<section class="sec loc">
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Мекен-жайымыз</span></div>
+    <h2 class="venue reveal d1">«Сүндет ата»<br>тойханасы</h2>
+    <p class="addr reveal d2"><b>Сарыағаш қаласы</b><br>Учхоз Қапланбек</p>
+    <a class="map reveal d3" href="https://go.2gis.com/AiWc7" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s7-6.3 7-11a7 7 0 10-14 0c0 4.7 7 11 7 11z" stroke-width="1.3"/><circle cx="12" cy="10" r="2.6" stroke-width="1.3"/></svg>
+      2GIS картадан ашу
+    </a>
+  </div>
+</section>
+
+<!-- ===== HOSTS ===== -->
+<section class="sec hosts">
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Той иелері</span></div>
+    <div class="n reveal d1">Мұхтар<span class="s">—</span>Айгүл</div>
+    <p class="role reveal d2">Сізді қуанышымызға ортақ болуға шақырады</p>
+  </div>
+</section>
+
+<!-- ===== CLOSING ===== -->
+<section class="closing">
+  <div class="wrap c">
+    <div class="rule reveal"><i></i><svg viewBox="0 0 40 24" fill="none" stroke="currentColor"><path d="M2 12h12M26 12h12" stroke-width="1"/><path d="M20 5c3 3 3 11 0 14c-3-3-3-11 0-14z" stroke-width="1"/></svg><i class="r"></i></div>
+    <p class="line reveal d1">Тойымыздың қадірлі<br>қонағы болыңыздар!</p>
+    <div class="cn reveal d2">Айдос<span class="amp">&amp;</span>Динара</div>
+    <div class="cd2 reveal d3">08 · 08 · 2026 · Сарыағаш</div>
+  </div>
+</section>
+
+<button class="music" id="music" type="button" aria-label="Музыканы қосу" title="Музыканы қосу">
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <svg class="play-ico" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+</button>
+<audio id="audio" loop preload="none">
+  <source src="assets/music.m4a" type="audio/mp4" />
+</audio>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var intro=document.getElementById("intro"), openBtn=document.getElementById("openBtn"), body=document.body;
+
+  function openInvite(){
+    intro.classList.add("hidden"); body.classList.remove("locked");
+    setTimeout(function(){ intro.style.display="none"; },1300);
+    document.querySelectorAll(".hero .reveal").forEach(function(el){ el.classList.add("in"); });
+    setupMusic();
+  }
+  openBtn.addEventListener("click", openInvite);
+  document.addEventListener("keydown", function(e){ if((e.key==="Enter"||e.key===" ")&&!intro.classList.contains("hidden")) openInvite(); });
+
+  /* reveal */
+  var io=("IntersectionObserver" in window)?new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
+  },{threshold:.14,rootMargin:"0px 0px -8% 0px"}):null;
+  if(io) document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+  else document.querySelectorAll(".reveal").forEach(function(el){ el.classList.add("in"); });
+
+  /* countdown */
+  var target=new Date("2026-08-08T19:00:00+05:00").getTime();
+  var dE=document.getElementById("cd-d"),hE=document.getElementById("cd-h"),mE=document.getElementById("cd-m"),sE=document.getElementById("cd-s"),note=document.getElementById("cd-note");
+  function pad(n){return(n<10?"0":"")+n;}
+  function tick(){
+    var diff=target-Date.now();
+    if(diff<=0){dE.textContent=hE.textContent=mE.textContent=sE.textContent="00";note.textContent=diff>-18*3600*1000?"Той басталды! Қош келдіңіздер":"Тойымыз өтті. Рахмет!";return;}
+    var s=Math.floor(diff/1000);
+    dE.textContent=pad(Math.floor(s/86400));hE.textContent=pad(Math.floor(s%86400/3600));mE.textContent=pad(Math.floor(s%3600/60));sE.textContent=pad(s%60);
+    var days=Math.floor(s/86400);note.textContent=days>0?("Тойға "+days+" күн қалды"):"Бүгін кездесеміз!";
+  }
+  tick(); setInterval(tick,1000);
+
+  /* music */
+  var audio=document.getElementById("audio"), mBtn=document.getElementById("music"), ready=false;
+  function reflect(){var p=audio&&!audio.paused&&!audio.ended;mBtn.classList.toggle("playing",p);var l=p?"Музыканы тоқтату":"Музыканы қосу";mBtn.setAttribute("aria-label",l);mBtn.setAttribute("title",l);}
+  function setupMusic(){
+    if(!audio)return;
+    audio.addEventListener("play",reflect);audio.addEventListener("pause",reflect);
+    audio.addEventListener("canplay",function(){if(ready)return;ready=true;mBtn.classList.add("show");var p=audio.play();if(p&&p.then)p.catch(reflect);});
+    audio.addEventListener("error",function(){mBtn.classList.remove("show");mBtn.style.display="none";});
+    try{audio.load();}catch(e){}
+  }
+  mBtn.addEventListener("click",function(){if(!audio)return;if(audio.paused)audio.play().catch(function(){});else audio.pause();});
+
+  /* falling petals */
+  if(!reduce){
+    var cv=document.getElementById("petals"),ctx=cv.getContext("2d"),W,H,DPR=Math.min(devicePixelRatio||1,2),P=[];
+    function rs(){W=cv.width=innerWidth*DPR;H=cv.height=innerHeight*DPR;cv.style.width=innerWidth+"px";cv.style.height=innerHeight+"px";build();}
+    function build(){P=[];var n=Math.min(26,Math.floor(innerWidth/54));for(var i=0;i<n;i++)P.push(mk(Math.random()*H));}
+    function mk(y){return{x:Math.random()*W,y:y,r:(Math.random()*7+5)*DPR,vy:(Math.random()*.5+.25)*DPR,vx:(Math.random()-.5)*.4*DPR,a:Math.random()*Math.PI*2,va:(Math.random()-.5)*.03,o:Math.random()*.35+.25};}
+    var cols=["189,128,121","233,201,166","201,143,120"];
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<P.length;i++){var p=P[i];p.y+=p.vy;p.x+=p.vx+Math.sin(p.y*.01)*.25;p.a+=p.va;
+        if(p.y-p.r>H){P[i]=mk(-10);continue;}
+        ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a);
+        ctx.fillStyle="rgba("+cols[i%3]+","+p.o.toFixed(2)+")";
+        ctx.beginPath();ctx.ellipse(0,0,p.r*.6,p.r,0,0,6.283);ctx.fill();ctx.restore();}
+      requestAnimationFrame(draw);
+    }
+    addEventListener("resize",rs,{passive:true});rs();draw();
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,3 +1,8 @@
 .claude/
 .DS_Store
 *.log
+
+# Not for publication
+assets/hero-poster.webp
+IMG_3658.MP4
+*.MP4
